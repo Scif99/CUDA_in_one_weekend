@@ -9,9 +9,9 @@ __global__
 void add(int n, float* x, float* y, float* out)
 {
     int block_index = blockIdx.x; //Index of block in grid
-    int thread_index = threadIdx.x; //Get index of thread
+    int thread_index = threadIdx.x; //Note that each block has the same indices for threads
 
-    int curr = block_index*blockDim.x + thread_index;
+    int curr = block_index*blockDim.x + thread_index; // Get the correct thread index over the whole grid
     int stride = blockDim.x*gridDim.x; //Note that the stride is the grid size
     for(int i = curr;i<n;i+=stride)
     {
